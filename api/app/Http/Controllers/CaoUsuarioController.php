@@ -16,17 +16,10 @@ class CaoUsuarioController extends Controller
         FROM caol.cao_usuario as u inner join caol.permissao_sistema as p on u.co_usuario = p.co_usuario
         where p.co_sistema=1 and p.in_ativo ='S' and (p.co_tipo_usuario=0 or p.co_tipo_usuario=1 or p.co_tipo_usuario=2)"));
         echo json_encode($sql);        
-    }
-
-
-    public function listarUsuario(Request $request){
-
-    }
-
+    }  
 
     public function ListarRelatorio(Request $request)
     {
-
         $mes1 = $request->input('mes1');
         $mes2 = $request->input('mes2');
         $year1 = $request->input('year1');
@@ -97,7 +90,7 @@ class CaoUsuarioController extends Controller
         on os.co_os = fa.co_os inner join cao_usuario as u
         on u.co_usuario = os.co_usuario inner join cao_salario as sa 
         on sa.co_usuario=u.co_usuario
-        WHERE year(fa.data_emissao) between 2007 and 2007 and month(fa.data_emissao) between 1 and 2 
+        WHERE year(fa.data_emissao) between $year1 and $year2 and month(fa.data_emissao) between $mes1 and $mes2 and $query)
         group by u.no_usuario,os.co_usuario,month(fa.data_emissao),year(fa.data_emissao),fecha
         order by fa.data_emissao"));
 
@@ -135,7 +128,7 @@ class CaoUsuarioController extends Controller
         on os.co_os = fa.co_os inner join cao_usuario as u
         on u.co_usuario = os.co_usuario inner join cao_salario as sa 
         on sa.co_usuario=u.co_usuario
-        WHERE year(fa.data_emissao) between 2007 and 2007 and month(fa.data_emissao) between 1 and 2 
+        WHERE year(fa.data_emissao) between $year1 and $year2 and month(fa.data_emissao) between $mes1 and $mes2
         group by fecha
         order by fa.data_emissao"));
 
