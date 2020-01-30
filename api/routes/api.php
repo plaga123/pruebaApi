@@ -23,4 +23,5 @@ Route::post('relatorio','CaoUsuarioController@ListarRelatorio');
 Route::post('grafico','CaoUsuarioController@grafico');
 Route::post('series','CaoUsuarioController@Series');
 Route::post('total','CaoUsuarioController@Total');
+Route::post('pizza','CaoUsuarioController@pizza');
 
